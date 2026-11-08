@@ -1,0 +1,1 @@
+document.addEventListener('submit',e=>{if(e.target.matches('[data-auth-form]')){e.preventDefault();const out=e.target.querySelector('[data-form-message]');if(out)out.textContent='Autenticação ainda não configurada. Esta tela não simula login nem cria sessão. Configure um provedor de identidade e o backend antes de liberar acesso.';}});

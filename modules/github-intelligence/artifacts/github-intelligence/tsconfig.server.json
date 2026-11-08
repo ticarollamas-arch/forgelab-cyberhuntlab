@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["server.ts", "hackmind-engine/**/*.ts"],
+  "exclude": ["node_modules", "build", "dist", "**/*.test.ts"],
+  "compilerOptions": {
+    "noEmit": true,
+    "noImplicitReturns": false,
+    "types": ["node", "vite/client"]
+  }
+}

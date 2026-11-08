@@ -1,0 +1,7 @@
+{
+  "name": "HACKMIND",
+  "description": "Inteligência competitiva para hackathons. Pesquisa de evidências, engenharia reversa de vencedores, descoberta de hipóteses, comitê adversarial e planos de MVP.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

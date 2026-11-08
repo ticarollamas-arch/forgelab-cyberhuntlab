@@ -1,0 +1,117 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "portal": {
+      "root": ".",
+      "runtime": "node",
+      "entrypoint": "server.js"
+    },
+    "github-app": {
+      "root": "modules/github-intelligence/artifacts/github-intelligence",
+      "runtime": "node",
+      "installCommand": "pnpm --dir ../.. install --frozen-lockfile",
+      "buildCommand": "BASE_PATH=/github/ PORT=3000 pnpm --dir ../.. --filter @workspace/github-intelligence build",
+      "entrypoint": "dist/server.mjs"
+    },
+    "ziptogit": {
+      "root": "modules/ziptogit",
+      "runtime": "node",
+      "installCommand": "npm install",
+      "buildCommand": "BASE_PATH=/ziptogit/ npm run build",
+      "entrypoint": "dist/server.mjs"
+    },
+    "hackmind": {
+      "root": "modules/hackmind",
+      "runtime": "node",
+      "installCommand": "npm install",
+      "buildCommand": "BASE_PATH=/hackmind/ npm run build",
+      "entrypoint": "dist/server.mjs"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/admin/(.*)",
+      "destination": {
+        "service": "portal"
+      }
+    },
+    {
+      "source": "/admin",
+      "destination": {
+        "service": "portal"
+      }
+    },
+    {
+      "source": "/admin/(.*)",
+      "destination": {
+        "service": "portal"
+      }
+    },
+    {
+      "source": "/github",
+      "destination": {
+        "service": "github-app"
+      }
+    },
+    {
+      "source": "/github/(.*)",
+      "destination": {
+        "service": "github-app"
+      }
+    },
+    {
+      "source": "/api/public/(.*)",
+      "destination": {
+        "service": "portal"
+      }
+    },
+    {
+      "source": "/api/auth/(.*)",
+      "destination": {
+        "service": "portal"
+      }
+    },
+    {
+      "source": "/api/webhooks/(.*)",
+      "destination": {
+        "service": "portal"
+      }
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": {
+        "service": "github-app"
+      }
+    },
+    {
+      "source": "/ziptogit",
+      "destination": {
+        "service": "ziptogit"
+      }
+    },
+    {
+      "source": "/ziptogit/(.*)",
+      "destination": {
+        "service": "ziptogit"
+      }
+    },
+    {
+      "source": "/hackmind",
+      "destination": {
+        "service": "hackmind"
+      }
+    },
+    {
+      "source": "/hackmind/(.*)",
+      "destination": {
+        "service": "hackmind"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "portal"
+      }
+    }
+  ]
+}

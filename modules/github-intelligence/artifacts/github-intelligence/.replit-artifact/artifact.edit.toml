@@ -1,0 +1,23 @@
+kind = "web"
+previewPath = "/"
+title = "GitHub Intelligence Career Suite"
+description = "Uma plataforma integrada para analisar perfis e repositórios GitHub, organizar portfólios profissionais, modernizar projetos com revisão humana e planejar ideias para hackathons."
+version = "1.0.0"
+id = "artifacts/github-intelligence"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18898
+
+[services.development]
+run = "pnpm --filter @workspace/github-intelligence run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/github-intelligence", "run", "build" ]
+serve = "pnpm --filter @workspace/github-intelligence run start"
+
+[services.env]
+PORT = "18898"
+BASE_PATH = "/"
